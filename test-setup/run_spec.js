@@ -32,13 +32,13 @@ function run_spec(dirname, parsers, options) {
                 parser: parsers[0],
             });
             const output = prettyprint(source, path, mergedOptions);
-            test(`${filename} - ${mergedOptions.parser}-verify`, async () => {
+            test(`${filename} - ${mergedOptions.parser}-verify`, async () => {a
                 try {
                     expect(
                         raw(source + '~'.repeat(80) + '\n' + (await output)),
                     ).toMatchSnapshot(filename);
                 } catch (e) {
-                    console.error(e, path);
+                    throw new Error(`Problem occurred in ${path} file: ${error.name}`);
                 }
             });
 
